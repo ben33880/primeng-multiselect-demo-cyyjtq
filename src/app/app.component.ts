@@ -19,7 +19,7 @@ export class AppComponent {
   groupeContrats: any[];
   users2: any[];
   groupeContrats2: any[];
-  contrats: Array<string>;
+  contrats: any[];
   tree: TreeNode[] = [];
   selectedFile: TreeNode;
   selectedContrat: any[];
