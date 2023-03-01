@@ -10,7 +10,9 @@ import { ApiService } from './api.service';
 })
 export class AppComponent {
   selectedGroupes: any[] = [];
+  selectedGroupes2: any[] = [];
   selectedUsers: any[];
+  selectedUsers2: any[];
   items: SelectItem[];
   item: string;
   users: any[];
@@ -89,24 +91,33 @@ export class AppComponent {
   }
 
   gererUsers() {
-    const cs = this.users
-      .filter((user) => this.selectedUsers.includes(user.value))
+    const cs = this.users2
+      .filter((user) => this.selectedUsers2.includes(user.value))
       .map((user) => {
         return user.items.map((item) =>
-          this.groupeContrats.find((groupe) => groupe.value === item.value)
+          this.groupeContrats2.find((groupe) => groupe.value === item.value)
         );
       });
 
-    this.selectedGroupes = cs.reduce((acc, val) => {
-      if (!acc.includes(val)) {
-        acc.concat(val), []);
-      }
-    } 
-  
-    console.log(this.selectedGroupes);
+    this.selectedGroupes2 = cs
+      .reduce((acc, val) => acc.concat(val), [])
+      .reduce((acc, val) => {
+        if (!acc.includes(val)) {
+          acc.push(val);
+        }
+        return acc;
+      }, []);
+
+    console.log(this.selectedGroupes2);
   }
 
   gererGroupes() {
-    console.log(this.selectedGroupes);
+    this.selectedUsers2 = this.users2.filter((user) =>
+      user.items.some((groupe) =>
+        this.selectedGroupes2.some((select) => select.value === groupe.value)
+      )
+    );
+
+    console.log(this.selectedUsers2);
   }
 }
