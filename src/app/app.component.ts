@@ -9,15 +9,19 @@ import { ApiService } from './api.service';
   providers: [ApiService],
 })
 export class AppComponent {
-  selectedGroupes: string[] = [];
+  selectedGroupes: any[] = [];
+  selectedUsers: any[];
   items: SelectItem[];
   item: string;
   users: any[];
   groupeContrats: any[];
+  users2: any[];
+  groupeContrats2: any[];
   contrats: Array<string>;
-  files: TreeNode[] = [];
+  tree: TreeNode[] = [];
   selectedFile: TreeNode;
   selectedContrat: any[];
+  selectedContrats: any[];
 
   constructor(
     private apiService: ApiService,
@@ -27,8 +31,10 @@ export class AppComponent {
 
     this.apiService.getUsers().then((users) => {
       this.users = users;
+      this.users2 = users;
       this.apiService.getContrats().then((groupeContrats) => {
         this.groupeContrats = groupeContrats;
+        this.groupeContrats2 = groupeContrats;
         users.forEach((user) => {
           const pere = {
             label: user.label,
@@ -60,7 +66,7 @@ export class AppComponent {
               pere.children.push(groupe);
             });
           }
-          this.files.push(pere);
+          this.tree.push(pere);
         });
       });
     });
@@ -69,7 +75,6 @@ export class AppComponent {
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
-
   gererContrats() {
     this.contrats = [];
     const cs = this.groupeContrats
@@ -80,5 +85,28 @@ export class AppComponent {
 
     this.contrats = cs.reduce((acc, val) => acc.concat(val), []);
     this.selectedContrat = this.contrats;
+    console.log(this.selectedContrat);
+  }
+
+  gererUsers() {
+    const cs = this.users
+      .filter((user) => this.selectedUsers.includes(user.value))
+      .map((user) => {
+        return user.items.map((item) =>
+          this.groupeContrats.find((groupe) => groupe.value === item.value)
+        );
+      });
+
+    this.selectedGroupes = cs.reduce((acc, val) => {
+      if (!acc.includes(val)) {
+        acc.concat(val), []);
+      }
+    } 
+  
+    console.log(this.selectedGroupes);
+  }
+
+  gererGroupes() {
+    console.log(this.selectedGroupes);
   }
 }

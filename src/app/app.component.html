@@ -1,3 +1,4 @@
+<h1>Proposition 1</h1>
 <h3>Choix périmêtre</h3>
 <h5>Choix utilisateur / groupe</h5>
 <p-multiSelect
@@ -24,9 +25,46 @@
   display="chip"
 ></p-multiSelect>
 
-<h3>Organigramme utilisateur / groupe / contrat</h3>
+<h1>Proposition 2</h1>
+<h3>Choix périmêtre</h3>
+<h5>Choix utilisateur + choix groupe</h5>
+<p-multiSelect
+  [options]="users2"
+  [(ngModel)]="selectedUsers"
+  defaultLabel="choisir utilisateur"
+  showClear="true"
+  display="chip"
+  (onChange)="gererUsers()"
+>
+</p-multiSelect>
+-
+<p-multiSelect
+  [options]="groupeContrats"
+  [(ngModel)]="selectedGroupes"
+  defaultLabel="choisir groupe"
+  showClear="true"
+  optionLabel="label"
+  display="chip"
+  (onChange)="gererGroupes()"
+>
+  <ng-template let-group pTemplate="group">
+    <div class="flex align-items-center">
+      <span>{{ group.label }}</span>
+    </div>
+  </ng-template>
+</p-multiSelect>
+<h5>Choix contrats</h5>
+<p-multiSelect
+  [options]="contrats"
+  [(ngModel)]="selectedContrat"
+  defaultLabel="liste des contrats"
+  optionLabel="label"
+  display="chip"
+></p-multiSelect>
+
+<h3>Explication : organigramme utilisateur / groupe / contrat</h3>
 <p-tree
-  [value]="files"
+  [value]="tree"
   layout="vertical"
   selectionMode="single"
   [(selection)]="selectedFile"
