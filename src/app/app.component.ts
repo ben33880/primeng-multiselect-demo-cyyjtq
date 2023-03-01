@@ -20,9 +20,11 @@ export class AppComponent {
   users2: any[];
   groupeContrats2: any[];
   contrats: any[];
+  contrats2: any[];
   tree: TreeNode[] = [];
   selectedFile: TreeNode;
   selectedContrat: any[];
+  selectedContrat2: any[];
   selectedContrats: any[];
 
   constructor(
@@ -77,6 +79,7 @@ export class AppComponent {
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
+
   gererContrats() {
     this.contrats = [];
     const cs = this.groupeContrats
@@ -106,6 +109,7 @@ export class AppComponent {
         return acc;
       }, []);
 
+    this.gererContrats2();
     console.log(this.selectedGroupes2);
   }
 
@@ -116,6 +120,18 @@ export class AppComponent {
       )
     );
 
+    this.gererContrats2();
     console.log(this.selectedUsers2);
+  }
+
+  gererContrats2() {
+    this.contrats2 = [];
+    const cs = this.selectedGroupes2.map((groupe) => {
+      return groupe.items.map((item) => item);
+    });
+
+    this.contrats2 = cs.reduce((acc, val) => acc.concat(val), []);
+    this.selectedContrat2 = this.contrats2;
+    console.log(this.selectedContrat2);
   }
 }
