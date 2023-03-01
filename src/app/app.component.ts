@@ -91,13 +91,11 @@ export class AppComponent {
   }
 
   gererUsers() {
-    const cs = this.users2
-      .filter((user) => this.selectedUsers2.includes(user.value))
-      .map((user) => {
-        return user.items.map((item) =>
-          this.groupeContrats2.find((groupe) => groupe.value === item.value)
-        );
-      });
+    const cs = this.selectedUsers2.map((user) => {
+      return user.items.map((item) =>
+        this.groupeContrats2.find((groupe) => groupe.value === item.value)
+      );
+    });
 
     this.selectedGroupes2 = cs
       .reduce((acc, val) => acc.concat(val), [])
