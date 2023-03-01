@@ -1,7 +1,21 @@
 <p-multiSelect
-  [options]="cities"
-  [(ngModel)]="selectedCities2"
-  defaultLabel="Select a City"
+  [options]="users"
+  [(ngModel)]="selectedUser"
+  defaultLabel="choisir utilisateur"
   optionLabel="name"
   display="chip"
 ></p-multiSelect>
+
+<p-multiSelect
+  [options]="users"
+  [group]="true"
+  [(ngModel)]="selectedUser"
+  defaultLabel="choisir utilisateur"
+  display="chip"
+>
+  <ng-template let-group pTemplate="group">
+    <div class="flex align-items-center">
+      <span>{{ group.label }}</span>
+    </div>
+  </ng-template>
+</p-multiSelect>

@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "name": "groupe 1",
+      "code": "G1",
+      "groupe": [
+        { "name": "contrat 1 - G1", "code": "C1" },
+        { "name": "contrat 2 - G1", "code": "C2" },
+        { "name": "contrat 3 - G1", "code": "C3" }
+      ]
+    },
+    {
+      "name": "groupe 2",
+      "code": "G2",
+      "groupe": [
+        { "name": "contrat 4 - G2", "code": "C4" },
+        { "name": "contrat 5 - G2", "code": "C5" }
+      ]
+    },
+    {
+      "name": "groupe 3",
+      "code": "G3",
+      "groupe": [{ "name": "contrat 6 - G3", "code": "C6" }]
+    },
+    {
+      "name": "groupe 4",
+      "code": "G4",
+      "groupe": [{ "name": "contrat 7 - G4", "code": "C7" }]
+    }
+  ]
+}
