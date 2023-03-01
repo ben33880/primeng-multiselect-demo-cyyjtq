@@ -17,6 +17,7 @@ export class AppComponent {
   contrats: Array<string>;
   files: TreeNode[] = [];
   selectedFile: TreeNode;
+  selectedContrat: any[];
 
   constructor(
     private apiService: ApiService,
@@ -71,11 +72,13 @@ export class AppComponent {
 
   gererContrats() {
     this.contrats = [];
-    this.contrats = this.groupeContrats
+    const cs = this.groupeContrats
       .filter((groupe) => this.selectedGroupes.includes(groupe.value))
       .map((groupe) => {
-        return groupe.items.map((item) => item.label);
+        return groupe.items.map((item) => item);
       });
-    console.log(this.contrats);
+
+    this.contrats = cs.reduce((acc, val) => acc.concat(val), []);
+    this.selectedContrat = this.contrats;
   }
 }
