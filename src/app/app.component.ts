@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SelectItem, PrimeNGConfig } from 'primeng/api';
+import { SelectItem, PrimeNGConfig, TreeNode } from 'primeng/api';
 import { ApiService } from './api.service';
 
 @Component({
@@ -9,11 +9,14 @@ import { ApiService } from './api.service';
   providers: [ApiService],
 })
 export class AppComponent {
-  selectedUser: string[] = [];
+  selectedGroupes: string[] = [];
   items: SelectItem[];
   item: string;
   users: any[];
-  contrats: any[];
+  groupeContrats: any[];
+  contrats: Array<string>;
+  files: TreeNode[] = [];
+  selectedFile: TreeNode;
 
   constructor(
     private apiService: ApiService,
@@ -23,14 +26,56 @@ export class AppComponent {
 
     this.apiService.getUsers().then((users) => {
       this.users = users;
-    });
-
-    this.apiService.getContrats().then((contrats) => {
-      this.contrats = contrats;
+      this.apiService.getContrats().then((groupeContrats) => {
+        this.groupeContrats = groupeContrats;
+        users.forEach((user) => {
+          const pere = {
+            label: user.label,
+            expandedIcon: 'pi pi-folder-open',
+            collapsedIcon: 'pi pi-folder',
+            expanded: true,
+            children: [],
+          };
+          if (user.items) {
+            user.items.forEach((item) => {
+              const contrats = groupeContrats.find(
+                (groupeContrat) => groupeContrat.value === item.value
+              ).items;
+              const groupe = {
+                expanded: true,
+                label: item.label,
+                expandedIcon: 'pi pi-folder-open',
+                collapsedIcon: 'pi pi-folder',
+                children: [],
+              };
+              if (contrats) {
+                contrats.forEach((contrat) => {
+                  const c = {
+                    label: contrat.label,
+                  };
+                  groupe.children.push(c);
+                });
+              }
+              pere.children.push(groupe);
+            });
+          }
+          this.files.push(pere);
+        });
+      });
     });
   }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+  }
+
+  gererContrats() {
+    this.contrats = [];
+    this.contrats = this.groupeContrats
+      .filter((groupe) => this.selectedGroupes.includes(groupe.value))
+      .map((groupe) => {
+        return groupe.items.map((item) => item.label);
+      });
+    console.log(this.contrats);
   }
 }

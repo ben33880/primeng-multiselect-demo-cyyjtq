@@ -1,26 +1,26 @@
 {
   "data": [
     {
-      "name": "utilisateur 1",
-      "code": "U1",
-      "groupe": [
-        { "name": "groupe 1", "code": "G1" },
-        { "name": "groupe 2", "code": "G2" },
-        { "name": "groupe 3", "code": "G3" }
+      "label": "utilisateur 1",
+      "value": "U1",
+      "items": [
+        { "label": "groupe 1", "value": "G1" },
+        { "label": "groupe 2", "value": "G2" },
+        { "label": "groupe 3", "value": "G3" }
       ]
     },
     {
-      "name": "utilisateur 2",
-      "code": "U2",
-      "groupe": [
-        { "name": "groupe 1", "code": "G1" },
-        { "name": "groupe 2", "code": "G2" }
+      "label": "utilisateur 2",
+      "value": "U2",
+      "items": [
+        { "label": "groupe 1", "value": "G1" },
+        { "label": "groupe 2", "value": "G2" }
       ]
     },
     {
-      "name": "utilisateur 3",
-      "code": "U3",
-      "groupe": [{ "name": "groupe 4", "code": "G4" }]
+      "label": "utilisateur 3",
+      "value": "U3",
+      "items": [{ "label": "groupe 4", "value": "G4" }]
     }
   ]
 }

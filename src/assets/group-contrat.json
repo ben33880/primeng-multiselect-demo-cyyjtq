@@ -1,31 +1,31 @@
 {
   "data": [
     {
-      "name": "groupe 1",
-      "code": "G1",
-      "groupe": [
-        { "name": "contrat 1 - G1", "code": "C1" },
-        { "name": "contrat 2 - G1", "code": "C2" },
-        { "name": "contrat 3 - G1", "code": "C3" }
+      "label": "groupe 1",
+      "value": "G1",
+      "items": [
+        { "label": "contrat 1", "value": "C1" },
+        { "label": "contrat 2", "value": "C2" },
+        { "label": "contrat 3", "value": "C3" }
       ]
     },
     {
-      "name": "groupe 2",
-      "code": "G2",
-      "groupe": [
-        { "name": "contrat 4 - G2", "code": "C4" },
-        { "name": "contrat 5 - G2", "code": "C5" }
+      "label": "groupe 2",
+      "value": "G2",
+      "items": [
+        { "label": "contrat 4", "value": "C4" },
+        { "label": "contrat 5", "value": "C5" }
       ]
     },
     {
-      "name": "groupe 3",
-      "code": "G3",
-      "groupe": [{ "name": "contrat 6 - G3", "code": "C6" }]
+      "label": "groupe 3",
+      "value": "G3",
+      "items": [{ "label": "contrat 6", "value": "C6" }]
     },
     {
-      "name": "groupe 4",
-      "code": "G4",
-      "groupe": [{ "name": "contrat 7 - G4", "code": "C7" }]
+      "label": "groupe 4",
+      "value": "G4",
+      "items": [{ "label": "contrat 7", "value": "C7" }]
     }
   ]
 }
